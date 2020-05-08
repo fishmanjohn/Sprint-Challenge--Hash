@@ -10,6 +10,7 @@ def finder(files, queries):
         # add to dictionary 
         print(i)
     #at the same time itterate over quiries and check if that file is in is in the dictonary and if it is add it to results  
+    #then return results 
     return result
 
 
