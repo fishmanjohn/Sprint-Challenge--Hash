@@ -3,7 +3,7 @@ import unittest
 from ex5 import finder
 
 
-class TestEx2(unittest.TestCase):
+class TestEx5(unittest.TestCase):
 
     def test_small(self):
         files = [
