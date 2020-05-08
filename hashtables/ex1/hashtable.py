@@ -13,10 +13,14 @@ class Hashtable:
         self.capacity = capacity
         self.storage = [None] * capacity
 
-    def hash(self, key):
-        return hash(key)
+def hash(x, max):
+    x = ((x >> 16) ^ x) * 0x45d9f3b
+    x = ((x >> 16) ^ x) * 0x45d9f3b
+    x = ((x >> 16) ^ x)
 
-    def put(hash_table, key, value):
+    return x % max
+
+def put(hash_table, key, value):
     index = hash(key, len(hash_table.storage))
 
     current_pair = hash_table.storage[index]
@@ -33,7 +37,7 @@ class Hashtable:
         new_pair.next = hash_table.storage[index]
         hash_table.storage[index] = new_pair
 
-    def delete(hash_table, key):
+def delete(hash_table, key):
     index = hash(key, len(hash_table.storage))
 
     current_pair = hash_table.storage[index]
@@ -52,7 +56,7 @@ class Hashtable:
             last_pair.next = current_pair.next
     
 
-    def get(hash_table, key):
+def get(hash_table, key):
     index = hash(key, len(hash_table.storage))
 
     current_pair = hash_table.storage[index]
@@ -62,8 +66,8 @@ class Hashtable:
             return current_pair.value
         current_pair = current_pair.next
 
-    
-    def resize(hash_table):
+
+def resize(hash_table):
     new_hash_table = HashTable(2 * len(hash_table.storage))
 
     current_pair = None
@@ -72,8 +76,8 @@ class Hashtable:
         current_pair = hash_table.storage[i]
         while current_pair is not None:
             hash_table_insert(new_hash_table,
-                              current_pair.key,
-                              current_pair.value)
+                            current_pair.key,
+                            current_pair.value)
             current_pair = current_pair.next
 
     return new_hash_table
